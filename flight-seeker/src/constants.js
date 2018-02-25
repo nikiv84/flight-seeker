@@ -1,1 +1,1 @@
-export const ENDPOINT = "https://api.skypicker.com/flights";
+export const ENDPOINT = "https://api.skypicker.com/";

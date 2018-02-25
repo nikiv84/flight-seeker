@@ -1,0 +1,26 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3532213, 2018-02-24T19:57:47-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfont(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Anivers-Regular by exljbris
+ * URL: https://www.myfonts.com/fonts/exljbris/anivers/regular/
+ * Copyright: Copyright (c) 2008 by Jos Buivenga. All rights reserved.
+ * Licensed pageviews: Unlimited
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3532213
+ * 
+ * © 2018 MyFonts Inc
+*/
+
+@font-face {
+    font-family: 'Anivers-Regular';
+    src: url('../fonts/35E5B5_0_0.eot');
+    src: url('../fonts/35E5B5_0_0.eot?#iefix') format('embedded-opentype'), url('../fonts/35E5B5_0_0.woff2') format('woff2'), url('../fonts/35E5B5_0_0.woff') format('woff'), url('../fonts/35E5B5_0_0.ttf') format('truetype');
+}

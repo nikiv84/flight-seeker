@@ -1,17 +1,32 @@
+body {
+  font-family: Anivers-Regular;
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  animation: App-logo-spin infinite 3s ease-in;
+  height: 50px;
 }
 
-.App-header {
+.App-header, footer {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
+}
+
+footer {
+  height: auto;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  color: #17a2b8;
+  text-decoration: none;
 }
 
 .App-title {
@@ -20,9 +35,67 @@
 
 .App-intro {
   font-size: large;
+  position: relative;
+  min-height: calc(100vh - 150px - 96px);
+}
+
+.App-intro input {
+  margin-bottom: 1rem;
+}
+
+.App-intro h5 {
+  margin: 1rem auto;
+}
+
+.card.card-body {
+  margin: 1rem 0;
+}
+
+.locations-list {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  position: absolute;
+  width: 100%;
+}
+
+.locations-list li {
+  background-color: #fcfcfc;
+  padding: 0.2rem;
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.locations-list li:hover {
+  background-color: #ebfaff;
+}
+
+.btn.btn-info {
+  margin-bottom: 1rem;
+}
+
+.pagination {
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #49b8ce;
+  border-color: #49b8ce;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: translateX(-100px) rotate(45deg);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100px) rotate(45deg);
+    opacity: 0;
+  }
 }
