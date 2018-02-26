@@ -3,6 +3,7 @@ import React from 'react';
 const Locations = (props) => {
     const locations = props.locations;
     const flightType = props.flightType;
+    
     function handleClick(e) {
         const name = e.target.dataset.name;
         const flightType = e.target.dataset.flighttype;

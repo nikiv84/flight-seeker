@@ -1,4 +1,4 @@
-import { ENDPOINT } from "../Constants";
+import { ENDPOINT } from "../api";
 import axios from "axios";
 
 class CommService {

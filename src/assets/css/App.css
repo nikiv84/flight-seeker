@@ -39,8 +39,8 @@ a, a:link, a:visited, a:hover, a:active {
   min-height: calc(100vh - 150px - 96px);
 }
 
-.App-intro input {
-  margin-bottom: 1rem;
+.App-intro input, .App-intro button {
+  margin: 0.75rem 0;
 }
 
 .App-intro h5 {
@@ -60,7 +60,10 @@ a, a:link, a:visited, a:hover, a:active {
   box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.15);
   z-index: 100;
   position: absolute;
-  width: 100%;
+  top: 50px;
+  left: 15px;
+  right: 15px;
+  cursor: pointer;
 }
 
 .locations-list li {

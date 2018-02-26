@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Input, Button } from 'reactstrap';
-import logo from './logo.svg';
-import './App.css';
-import { dataService } from './service/DataService';
-import { dateFormatter } from './common/helpers';
-import Flight from './Flight';
-import Locations from './Locations';
-import Footer from './common/Footer';
+import '../assets/css/App.css';
+import { dataService } from '../service/DataService';
+import { dateFormatter } from '../common/helpers';
+import FlightResults from '../components/FlightResults';
+import Locations from '../components/Locations';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import Pagination from "react-js-pagination";
+
+const itemsCountPerPage = 5;
 
 class App extends Component {
   constructor(props) {
@@ -17,10 +19,17 @@ class App extends Component {
       flightResults: [],
       flyFromResults: [],
       flyToResults: [],
-      activePage: 1,
-      itemsCountPerPage: 5
+      activePage: 1
     }
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activePage !== this.state.activePage) {
+      console.log(prevState.activePage, this.state.activePage);
+      window.scrollTo(0, 0);
+    }
+  }
+
 
   fetchFlights = () => {
     const searchData = { ...this.state.flightData };
@@ -80,13 +89,10 @@ class App extends Component {
   render() {
     const numResults = this.state.flightResults.length;
     const activePage = this.state.activePage;
-    const itemsCountPerPage = this.state.itemsCountPerPage;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to <strong>FlightSeeker</strong></h1>
-        </header>
+      <div className="App" onClick={this.hideList}>
+        <Header />
         <div className="App-intro">
           <Container>
             <Row>
@@ -94,7 +100,7 @@ class App extends Component {
                 <h5 className="text-left">Seek a flight:</h5>
               </Col>
               <Col xs="12" sm="4" lg="3">
-                <Input placeholder="From:" name="flyFrom" onChange={this.handleChange} value={this.state.flightData.flyFrom} onClick={this.hideList} onFocus={this.hideList} />
+                <Input placeholder="From:" name="flyFrom" onChange={this.handleChange} value={this.state.flightData.flyFrom} onFocus={this.hideList} aria-describedby="initInstr" aria-owns="results" aria-expanded="false" aria-autocomplete="both" aria-activedescendant=""/>
                 {this.state.flyFromResults ? <Locations locations={this.state.flyFromResults} flightType="flyFrom" locationHandler={this.locationHandler} /> : ""}
               </Col>
               <Col xs="12" sm="4" lg="3">
@@ -102,20 +108,16 @@ class App extends Component {
                 {this.state.flyToResults ? <Locations locations={this.state.flyToResults} flightType="flyTo" locationHandler={this.locationHandler} /> : ""}
               </Col>
               <Col xs="12" sm="4" lg="3">
-                <Input type="date" placeholder="Date:" name="fDate" onChange={this.handleChange} onClick={this.hideList} onFocus={this.hideList} />
+                <Input type="date" placeholder="Date:" name="fDate" onChange={this.handleChange} onFocus={this.hideList} />
               </Col>
               <Col xs="12" sm="4" lg="3" className="text-left">
                 <Button color="info" onClick={this.fetchFlights}>Search flights</Button>
               </Col>
             </Row>
             <Row>
-              {this.state.flightResults
-                .filter((element, index) => {
-                  return index >= ((activePage - 1) * itemsCountPerPage) && index < activePage * itemsCountPerPage;
-                })
-                .map((flight, index) => {
-                  return <Flight flightInfo={flight} key={index} />
-                })}
+              <Col xs="12">
+                <FlightResults flights={this.state.flightResults} activePage={activePage} itemsCountPerPage={itemsCountPerPage} />
+              </Col>
             </Row>
             <Row>
               <Col xs="12">
