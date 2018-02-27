@@ -25,7 +25,6 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activePage !== this.state.activePage) {
-      console.log(prevState.activePage, this.state.activePage);
       window.scrollTo(0, 0);
     }
   }
@@ -35,7 +34,7 @@ class App extends Component {
     const searchData = { ...this.state.flightData };
     searchData.fDate = dateFormatter(searchData.fDate);
     dataService.getFlights(searchData, (flightResults) => {
-      this.setState({ flightResults });
+      this.setState({ flightResults, activePage: 1 });
     }, (error) => {
       console.log(error);
     });
@@ -127,7 +126,7 @@ class App extends Component {
                       activePage={this.state.activePage}
                       itemsCountPerPage={itemsCountPerPage}
                       totalItemsCount={numResults}
-                      pageRangeDisplayed={10}
+                      pageRangeDisplayed={6}
                       onChange={this.handlePageChange}
                       itemClass="page-item"
                       linkClass="page-link"
