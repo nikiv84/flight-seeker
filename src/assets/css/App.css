@@ -92,6 +92,11 @@ a, a:link, a:visited, a:hover, a:active {
   border-color: #49b8ce;
 }
 
+.avatar {
+  height: 0.9rem;
+  vertical-align: middle;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: translateX(-100px) rotate(45deg);

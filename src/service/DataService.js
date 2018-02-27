@@ -30,8 +30,9 @@ class DataService {
         commService.getRequest(requestUrl, responseData => {
             const locationsData = responseData.data.locations;
             locationsData.forEach(singleLocation => {
-                const { name, code, country, type } = singleLocation;
-                const location = new LocationDTO(name, code, country, type);
+                const { name, code, type } = singleLocation;
+                console.log(type);
+                const location = new LocationDTO(name, code, type);
                 locations.push(location);
             });
             locationsHandler(locations);

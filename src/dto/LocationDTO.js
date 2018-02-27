@@ -1,8 +1,7 @@
 export default class LocationDTO {
-    constructor(name, code, country, type) {
+    constructor(name, code, type) {
         this._name = name;
         this._code = code;
-        this._country = country;
         this._type = type;
     }
 
@@ -11,9 +10,6 @@ export default class LocationDTO {
     }
     get code() {
         return this._code;
-    }
-    get country() {
-        return this._country;
     }
     get type() {
         return this._type;
