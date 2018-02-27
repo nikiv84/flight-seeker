@@ -10,7 +10,7 @@ Entry task for [Kiwi.com Modern JS weekend in Barcelona](https://jsweekend.cz/)
     -   React.js
     -   RESTFul API
     -   Passing data through multiple layers, both ways
-	  -   Separation of concerns
+	-   Separation of concerns
     -   Stateful and Stateless components
 
 # Stack
