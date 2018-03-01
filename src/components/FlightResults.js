@@ -1,11 +1,8 @@
 import React from 'react';
 import Flight from './Flight';
+import PropTypes from 'prop-types';
 
-const FightResults = (props) => {
-    const flights = props.flights;
-    const itemsCountPerPage = props.itemsCountPerPage;
-    const activePage = props.activePage;
-
+const FlightResults = ({ flights, itemsCountPerPage, activePage }) => {
     return (
         <div>
             {flights
@@ -19,4 +16,10 @@ const FightResults = (props) => {
     );
 };
 
-export default FightResults;
+FlightResults.propTypes = {
+    flights: PropTypes.array,
+    itemsCountPerPage: PropTypes.number,
+    activePage: PropTypes.number
+}
+
+export default FlightResults;

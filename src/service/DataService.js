@@ -31,7 +31,6 @@ class DataService {
             const locationsData = responseData.data.locations;
             locationsData.forEach(singleLocation => {
                 const { name, code, type } = singleLocation;
-                console.log(type);
                 const location = new LocationDTO(name, code, type);
                 locations.push(location);
             });

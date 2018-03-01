@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Input, Button } from 'reactstrap';
 import '../assets/css/App.css';
-import { dataService } from '../service/DataService';
-import { dateFormatter } from '../common/helpers';
-import FlightResults from '../components/FlightResults';
-import Locations from '../components/Locations';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Pagination from "react-js-pagination";
+import Pagination from 'react-js-pagination';
+import { dataService } from '../service/DataService';
+import { dateFormatter } from '../common/helpers';
+import ChooseDestination from '../components/ChooseDestination';
+import FlightResults from '../components/FlightResults';
 
 const itemsCountPerPage = 5;
 
@@ -88,6 +88,10 @@ class App extends Component {
   render() {
     const numResults = this.state.flightResults.length;
     const activePage = this.state.activePage;
+    const flightData = this.state.flightData;
+    const flyFromResults = this.state.flyFromResults;
+    const flyToResults = this.state.flyToResults;
+    const flightResults = this.state.flightResults;
 
     return (
       <div className="App" onClick={this.hideList}>
@@ -99,15 +103,23 @@ class App extends Component {
                 <h5 className="text-left">Seek a flight:</h5>
               </Col>
               <Col xs="12" sm="4" lg="3">
-                <Input placeholder="From:" name="flyFrom" onChange={this.handleChange} value={this.state.flightData.flyFrom} onFocus={this.hideList} aria-describedby="initInstr" aria-owns="results" aria-expanded="false" aria-autocomplete="both" aria-activedescendant=""/>
-                {this.state.flyFromResults ? <Locations locations={this.state.flyFromResults} flightType="flyFrom" locationHandler={this.locationHandler} /> : ""}
+                <ChooseDestination
+                  handleChange={this.handleChange}
+                  flightType="flyFrom"
+                  flightData={flightData.flyFrom}
+                  flyResults={flyFromResults}
+                  locationHandler={this.locationHandler} />
               </Col>
               <Col xs="12" sm="4" lg="3">
-                <Input placeholder="To:" name="flyTo" onChange={this.handleChange} value={this.state.flightData.flyTo} onClick={this.handleClick} onFocus={this.hideList} />
-                {this.state.flyToResults ? <Locations locations={this.state.flyToResults} flightType="flyTo" locationHandler={this.locationHandler} /> : ""}
+                <ChooseDestination
+                  handleChange={this.handleChange}
+                  flightType="flyTo"
+                  flightData={flightData.flyTo}
+                  flyResults={flyToResults}
+                  locationHandler={this.locationHandler} />
               </Col>
               <Col xs="12" sm="4" lg="3">
-                <Input type="date" placeholder="Date:" name="fDate" onChange={this.handleChange} onFocus={this.hideList} />
+                <Input type="date" placeholder="Date:" name="fDate" onChange={this.handleChange} />
               </Col>
               <Col xs="12" sm="4" lg="3" className="text-left">
                 <Button color="info" onClick={this.fetchFlights}>Search flights</Button>
@@ -115,13 +127,15 @@ class App extends Component {
             </Row>
             <Row>
               <Col xs="12">
-                <FlightResults flights={this.state.flightResults} activePage={activePage} itemsCountPerPage={itemsCountPerPage} />
+                <FlightResults
+                  flights={flightResults}
+                  activePage={activePage} itemsCountPerPage={itemsCountPerPage} />
               </Col>
             </Row>
             <Row>
               <Col xs="12">
-                {this.state.flightResults.length ?
-                  this.state.flightResults.length > itemsCountPerPage ?
+                {flightResults.length ?
+                  flightResults.length > itemsCountPerPage ?
                     <Pagination
                       activePage={this.state.activePage}
                       itemsCountPerPage={itemsCountPerPage}

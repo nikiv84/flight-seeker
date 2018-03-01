@@ -1,22 +1,21 @@
 import React from 'react';
-
 import airport from '../assets/images/airport.svg';
 import city from '../assets/images/city.svg';
 import country from '../assets/images/country.svg';
 import unknown from '../assets/images/unknown.png';
+import PropTypes from 'prop-types';
 
-const Locations = (props) => {
-    const locations = props.locations;
-    const flightType = props.flightType;
+const Locations = ({locations, flightType, locationHandler}) => {
+
 
     function handleClick(e) {
         const name = e.target.dataset.name;
         const flightType = e.target.dataset.flighttype;
-        props.locationHandler(name, flightType);
+        locationHandler(name, flightType);
     }
 
-    function avatar(type) {
-        let avatar = "";
+    function addAvatar(type) {
+        let avatar;
         switch (type) {
             case "airport":
                 avatar = airport;
@@ -34,12 +33,21 @@ const Locations = (props) => {
     }
 
     return (
-        <ul className="locations-list">
-            {locations.map((location, index) => {
-                return <li key={index} onClick={handleClick} data-name={location.code} data-flighttype={flightType}><img className="avatar" src={avatar(location.type)} alt={location.type} /> - {location.name}</li>
+        <ul className={`locations-list ${(!locations || !locations.length) ? "" : "show-locations"}`}>
+            {!locations ? "" : locations.map((location, index) => {
+                return (<li key={index} onClick={(e) => handleClick(e)} data-name={location.code} data-flighttype={flightType}>
+                    <img className="avatar" src={addAvatar(location.type)} alt={location.type} /> - {location.name}
+                </li>);
             })}
         </ul>
     );
 };
+
+Locations.propTypes = {
+    locations: PropTypes.array,
+    flightType: PropTypes.string,
+    handleClick: PropTypes.func,
+    locationHandler: PropTypes.func,
+}
 
 export default Locations;

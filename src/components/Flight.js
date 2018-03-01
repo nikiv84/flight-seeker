@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Card, CardText, CardTitle } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 class Flight extends Component {
     render() {
@@ -19,6 +20,10 @@ class Flight extends Component {
             </Col>
         );
     }
+}
+
+Flight.propTypes = {
+    flightInfo: PropTypes.object
 }
 
 export default Flight;
